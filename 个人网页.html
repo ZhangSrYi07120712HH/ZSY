@@ -1,0 +1,539 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>张锶怡 | 汉语国际教育 · 人文之路</title>
+    <!-- 优雅衬线字体与无衬线字体，人文与现代交融 -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&display=swap" rel="stylesheet">
+    <!-- Font Awesome 6 (免费图标库) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: #fefaf5;  /* 暖白基底，仿纸质书卷感 */
+            font-family: 'Inter', sans-serif;
+            color: #2c2a2b;
+            line-height: 1.65;
+            scroll-behavior: smooth;
+        }
+
+        /* 柔和背景纹理 - 宣纸颗粒感 */
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: radial-gradient(#e5d9ce 0.8px, transparent 0.8px);
+            background-size: 28px 28px;
+            opacity: 0.25;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 2rem 2rem 3rem;
+        }
+
+        /* 头部区域 — 留白诗意 */
+        header {
+            text-align: center;
+            margin-bottom: 2.8rem;
+            padding-top: 1rem;
+        }
+
+        .name-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 3.6rem;
+            font-weight: 600;
+            letter-spacing: 2px;
+            color: #7a4c3c;
+            border-bottom: 1px solid #d9c9ba;
+            display: inline-block;
+            padding-bottom: 0.3rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .subhead {
+            font-size: 1rem;
+            font-weight: 400;
+            color: #9b7b64;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            background: #f3ede8;
+            display: inline-block;
+            padding: 0.3rem 1.4rem;
+            border-radius: 40px;
+            font-family: 'Inter', sans-serif;
+        }
+
+        /* 个人简介卡片 (含头像区域) — 温润卡片风格 */
+        .profile-card {
+            background: #ffffffea;
+            border-radius: 36px;
+            box-shadow: 0 12px 28px rgba(0, 0, 0, 0.05), 0 0 0 1px #f0e4d8 inset;
+            padding: 2rem 2rem;
+            margin: 2rem 0 3rem;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2.2rem;
+            align-items: center;
+            backdrop-filter: blur(0px);
+            transition: all 0.2s ease;
+        }
+
+        /* 头像放置区 — 人文画意 */
+        .avatar-area {
+            flex: 0 0 150px;
+            text-align: center;
+        }
+        .avatar-frame {
+            width: 150px;
+            height: 150px;
+            margin: 0 auto;
+            border-radius: 50%;
+            background: #f1e9e2;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            box-shadow: 0 12px 22px -8px rgba(80, 50, 30, 0.2);
+            border: 3px solid #f3e0d2;
+            transition: 0.2s;
+        }
+        .avatar-frame img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+        /* 默认图标（优雅书本/人文）如果图片未上传 */
+        .avatar-placeholder {
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #dccbbc, #f7ede5);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+            color: #a08167;
+        }
+        .avatar-caption {
+            margin-top: 0.6rem;
+            font-size: 0.75rem;
+            color: #b59881;
+            letter-spacing: 0.5px;
+            font-style: italic;
+        }
+
+        .intro-text {
+            flex: 1;
+        }
+        .intro-text h2 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2rem;
+            font-weight: 600;
+            color: #5e3a2e;
+            margin-bottom: 0.4rem;
+        }
+        .intro-text .tagline {
+            font-size: 1rem;
+            color: #b27c5c;
+            margin-bottom: 1rem;
+            border-left: 3px solid #dcc1ae;
+            padding-left: 0.8rem;
+            font-weight: 400;
+        }
+        .intro-text p {
+            color: #3d3530;
+            margin-bottom: 0.8rem;
+        }
+        .signature {
+            font-family: 'Cormorant Garamond', serif;
+            font-style: italic;
+            font-size: 1rem;
+            margin-top: 0.6rem;
+            color: #997f68;
+        }
+
+        /* 版块标题 — 东方美学留白 */
+        .section-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2rem;
+            font-weight: 600;
+            color: #6d4c3a;
+            margin: 2.5rem 0 1.2rem 0;
+            letter-spacing: 1px;
+            display: flex;
+            align-items: baseline;
+            gap: 10px;
+            border-left: 4px solid #cfb595;
+            padding-left: 1rem;
+        }
+        .section-title i {
+            font-size: 1.6rem;
+            color: #c6a27a;
+        }
+
+        /* 求学经历 — 时间轴 手写温柔感 */
+        .timeline {
+            display: flex;
+            flex-direction: column;
+            gap: 1.8rem;
+            margin-bottom: 1rem;
+        }
+        .timeline-node {
+            background: #ffffffec;
+            border-radius: 28px;
+            padding: 1.5rem 2rem;
+            box-shadow: 0 5px 14px rgba(0, 0, 0, 0.02), 0 0 0 1px #efe2d7;
+            transition: 0.2s;
+        }
+        .timeline-node:hover {
+            box-shadow: 0 12px 20px rgba(100, 70, 40, 0.08), 0 0 0 1px #dccbbd;
+            transform: translateY(-2px);
+        }
+        .timeline-year {
+            font-family: 'Cormorant Garamond', serif;
+            font-weight: 600;
+            font-size: 1.3rem;
+            color: #b2805c;
+            margin-bottom: 0.3rem;
+            display: inline-block;
+            border-bottom: 1px dashed #e2cfbf;
+            padding-right: 1rem;
+        }
+        .timeline-title {
+            font-size: 1.4rem;
+            font-weight: 500;
+            color: #3f2c22;
+            margin: 0.5rem 0 0.2rem;
+        }
+        .timeline-sub {
+            color: #a07e66;
+            font-size: 0.9rem;
+            font-weight: 400;
+            margin-bottom: 0.7rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+        .desc-text {
+            color: #4b3f38;
+            margin-top: 0.5rem;
+        }
+        .skill-badge {
+            display: inline-flex;
+            align-items: center;
+            background: #f9f2ea;
+            border-radius: 30px;
+            padding: 0.2rem 0.9rem;
+            font-size: 0.75rem;
+            font-weight: 500;
+            color: #8f6a4e;
+            margin-right: 8px;
+            margin-top: 10px;
+            gap: 6px;
+        }
+
+        /* 证书与特殊技能区域 — 优雅徽章组 */
+        .cert-skill-section {
+            background: #fefaf5;
+            border-radius: 28px;
+            margin: 1rem 0 0.5rem;
+            padding: 1rem 0.5rem;
+        }
+        .badge-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            align-items: center;
+            margin-top: 0.8rem;
+        }
+        .cert-item, .skill-item {
+            background: #ffffffdd;
+            border-radius: 60px;
+            padding: 0.5rem 1.2rem;
+            font-size: 0.85rem;
+            font-weight: 500;
+            color: #7a5a46;
+            border: 1px solid #e2cfbe;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.02);
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            transition: 0.1s ease;
+        }
+        .cert-item i, .skill-item i {
+            color: #b58d6c;
+            font-size: 1rem;
+        }
+        .skill-item {
+            background: #f7efe7;
+            border-color: #d5bc9f;
+        }
+
+        /* 未来发展方向 — 网格 自然质感 */
+        .future-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 1.8rem;
+            margin: 2rem 0 1rem;
+        }
+        .future-card {
+            background: #ffffffef;
+            border-radius: 28px;
+            padding: 1.6rem 1.5rem;
+            text-align: center;
+            transition: all 0.25s ease;
+            border: 1px solid #eedfcb;
+            box-shadow: 0 6px 12px rgba(0,0,0,0.02);
+        }
+        .future-card:hover {
+            border-color: #cbad8e;
+            background: #fffcf8;
+            transform: translateY(-4px);
+            box-shadow: 0 18px 25px -12px rgba(90, 55, 30, 0.12);
+        }
+        .future-icon {
+            font-size: 2.2rem;
+            color: #b27d5c;
+            margin-bottom: 1rem;
+        }
+        .future-card h3 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.6rem;
+            font-weight: 600;
+            color: #5e3f2f;
+            margin-bottom: 0.7rem;
+        }
+        .future-card p {
+            font-size: 0.9rem;
+            color: #5b4a3e;
+            line-height: 1.5;
+        }
+        .quote-note {
+            background: #fbf6ef;
+            border-radius: 2rem;
+            padding: 1.8rem;
+            margin: 2.5rem 0 1.5rem;
+            text-align: center;
+            border-left: 6px solid #d7bc9e;
+            font-style: italic;
+            color: #4f3b2e;
+            font-size: 1rem;
+        }
+
+        /* 底部 */
+        .footer {
+            margin-top: 3rem;
+            padding-top: 2rem;
+            border-top: 1px solid #e3d4c5;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            color: #a68971;
+            font-size: 0.85rem;
+        }
+        .footer-icons i {
+            font-size: 1.3rem;
+            margin-left: 1rem;
+            color: #b29178;
+            transition: 0.2s;
+            cursor: default;
+        }
+        .footer-icons i:hover { color: #855f48; }
+
+        @media (max-width: 700px) {
+            .container { padding: 1.5rem; }
+            .name-title { font-size: 2.5rem; }
+            .profile-card { flex-direction: column; text-align: center; }
+            .intro-text h2 { text-align: center; }
+            .tagline { text-align: center; border-left: none; padding-left: 0; }
+            .section-title { font-size: 1.8rem; }
+            .timeline-node { padding: 1.2rem; }
+            .badge-group { justify-content: center; }
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <header>
+        <div class="name-title">张 锶 怡</div>
+        <div class="subhead"><i class="fas fa-feather-alt" style="margin-right: 6px;"></i> 汉语国际教育 · 大三 · 人文行者</div>
+    </header>
+
+    <!-- 个人简介 + 头像预留区 -->
+    <div class="profile-card">
+        <div class="avatar-area">
+            <div class="avatar-frame" id="avatarFrame">
+                <!-- 头像预留区: 替换图片修改 src -->
+                <img id="userAvatar" src="images/avatar-placeholder.jpg" alt="个人头像" 
+                     onerror="this.onerror=null; this.style.display='none'; document.getElementById('avatarPlaceholder').style.display='flex';">
+                <div id="avatarPlaceholder" class="avatar-placeholder" style="display: none;">
+                    <i class="fas fa-book-open"></i>
+                </div>
+            </div>
+            <div class="avatar-caption">✦ 笃行 · 弘文 ✦</div>
+        </div>
+        <div class="intro-text">
+            <h2>以语言为桥 · 让文化生花</h2>
+            <div class="tagline">从巴渝山水到世界讲台，探索中文教育的温度与深度</div>
+            <p>你好，我是锶怡，一名热爱汉语国际教育的大三学生。坚信语言不仅是工具，更是理解彼此心灵的窗口。在求学路上，我致力于将中华文化与第二语言教学相融合，期待成为有底蕴、有方法、有情怀的国际中文教师。</p>
+            <div class="signature"><i class="fas fa-pen-fancy"></i> 怀瑾握瑜，风禾尽起</div>
+        </div>
+    </div>
+
+    <!-- 求学经历板块（学校已改为四川外国语大学） -->
+    <div>
+        <div class="section-title">
+            <i class="fas fa-graduation-cap"></i> 
+            <span>求学经历 · 步履不停</span>
+        </div>
+        <div class="timeline">
+            <!-- 经历 1 -->
+            <div class="timeline-node">
+                <div class="timeline-year">2022 – 2023</div>
+                <div class="timeline-title">汉语国际教育 · 筑基之年</div>
+                <div class="timeline-sub">
+                    <span><i class="fas fa-university"></i> 四川外国语大学 · 中国语言文化学院</span>
+                    <span><i class="fas fa-trophy"></i> 校一等奖学金</span>
+                </div>
+                <div class="desc-text">
+                    系统修读《现代汉语》《语言学概论》《对外汉语教学入门》《中国文化概论》。参与“语伴计划”，与留学生一对一交流，累积辅导30+课时，初步建立跨文化教学意识。
+                </div>
+                <div>
+                    <span class="skill-badge"><i class="fas fa-language"></i> 现代汉语语法</span>
+                    <span class="skill-badge"><i class="fas fa-globe"></i> 跨文化交际</span>
+                </div>
+            </div>
+            <!-- 经历 2 -->
+            <div class="timeline-node">
+                <div class="timeline-year">2023 – 2024</div>
+                <div class="timeline-title">教学实践 · 汉教拓展</div>
+                <div class="timeline-sub">
+                    <span><i class="fas fa-chalkboard-user"></i> 海外中文线上实习 · LingoChinese</span>
+                    <span><i class="fas fa-palette"></i> 中华才艺研修</span>
+                </div>
+                <div class="desc-text">
+                    参加“中文+文化”线上教学项目，设计沉浸式文化主题课（茶艺、传统节日）。同时在重庆某国际学校担任中文助教，协助中级班综合课，编写教案超过20份，获得指导老师好评。
+                </div>
+                <div>
+                    <span class="skill-badge"><i class="fas fa-video"></i> 线上教学设计</span>
+                    <span class="skill-badge"><i class="fas fa-leaf"></i> 文化工作坊</span>
+                </div>
+            </div>
+            <!-- 经历 3 大三目前 -->
+            <div class="timeline-node">
+                <div class="timeline-year">2024 – 至今 (大三)</div>
+                <div class="timeline-title">深度研修 · 学术与实践并行</div>
+                <div class="timeline-sub">
+                    <span><i class="fas fa-microphone-alt"></i> 二语习得研究组</span>
+                    <span><i class="fas fa-school"></i> 重庆巴蜀常春藤学校 · 汉语兴趣课教师</span>
+                </div>
+                <div class="desc-text">
+                    主修《第二语言习得》《汉语作为第二语言教学法》《教育心理学》。参与校级大创项目“国际中文教育绘本资源开发”，设计原创分级绘本。正备考国际中文教师证书(CTCSOL)，并筹备赴泰国汉语教学实习。
+                </div>
+                <div>
+                    <span class="skill-badge"><i class="fas fa-book"></i> 教材编写基础</span>
+                    <span class="skill-badge"><i class="fas fa-chart-line"></i> 教学评估方法</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 专业证书与特殊技能  (英语六级，计算机二级，普通话二甲，太极剑术) -->
+    <div class="cert-skill-section">
+        <div class="section-title" style="margin-bottom: 0.6rem;">
+            <i class="fas fa-certificate"></i>
+            <span>专业认证 · 文武兼修</span>
+        </div>
+        <div class="badge-group">
+            <div class="cert-item"><i class="fas fa-language"></i> 英语六级 (CET-6)</div>
+            <div class="cert-item"><i class="fas fa-laptop-code"></i> 计算机二级 (MS Office)</div>
+            <div class="cert-item"><i class="fas fa-microphone-alt"></i> 普通话二甲 · 92.5分</div>
+            <div class="skill-item"><i class="fas fa-fist-raised"></i> 特殊技能 · 太极剑术 (杨氏太极剑/ 国际交流才艺)</div>
+        </div>
+        <p style="font-size: 0.85rem; color:#8b6f58; margin-top: 12px; padding-left: 6px;">
+            <i class="fas fa-feather-alt"></i> 太极剑术兼具传统武术底蕴与舞台表现力，未来可将中华武术融入汉语文化课堂，让语言教学更生动。
+        </p>
+    </div>
+
+    <!-- 未来发展方向 -->
+    <div>
+        <div class="section-title">
+            <i class="fas fa-seedling"></i>
+            <span>未来发展方向 · 向光而行</span>
+        </div>
+        <div class="future-grid">
+            <div class="future-card">
+                <div class="future-icon"><i class="fas fa-chalkboard"></i></div>
+                <h3>国际中文教师</h3>
+                <p>深耕海外孔子学院或国际学校，成为一线教学骨干，以差异化教学法帮助不同母语背景的学生爱上汉语，搭建中外人文交流之桥。</p>
+            </div>
+            <div class="future-card">
+                <div class="future-icon"><i class="fas fa-museum"></i></div>
+                <h3>文化传播者</h3>
+                <p>结合新媒体与数字叙事，制作汉语文化内容，促进中华优秀文化“年轻化”传播，让世界理解中国节、中国戏、中国情。</p>
+            </div>
+            <div class="future-card">
+                <div class="future-icon"><i class="fas fa-file-alt"></i></div>
+                <h3>教材研发 / 教育产品</h3>
+                <p>参与国际中文教材及多媒体资源研发，关注少儿汉语与商务汉语方向，融合任务型教学与真实语料，提升学习体验。</p>
+            </div>
+            <div class="future-card">
+                <div class="future-icon"><i class="fas fa-hand-sparkles"></i></div>
+                <h3>跨文化培训师</h3>
+                <p>为跨国企业或外派人员提供跨文化适应训练与中文课程，助力全球语境下的深度沟通与协作。</p>
+            </div>
+        </div>
+        <div class="quote-note">
+            <i class="fas fa-quote-left" style="margin-right: 8px; opacity: 0.7;"></i> 语言是大地，文化是星辰。我的每一步求学，都是为了让汉语的种子在异域生根发芽，长成彼此理解的花园。
+        </div>
+    </div>
+
+    <!-- 页脚：邮箱与地址更新 -->
+    <div class="footer">
+        <div><i class="far fa-envelope"></i> 1301783703@qq.com  ·  <i class="fas fa-map-marker-alt"></i> 重庆 · 歌乐山麓（四川外国语大学）</div>
+        <div class="footer-icons">
+            <i class="fab fa-weixin" title="人文交流"></i>
+            <i class="fab fa-linkedin-in" title="职业链接"></i>
+            <i class="fas fa-pen-nib" title="书写中文之美"></i>
+        </div>
+    </div>
+</div>
+
+<!-- 头像占位脚本 -->
+<script>
+    (function() {
+        const avatarImg = document.getElementById('userAvatar');
+        const placeholderDiv = document.getElementById('avatarPlaceholder');
+        if (avatarImg) {
+            avatarImg.onerror = function() {
+                avatarImg.style.display = 'none';
+                if(placeholderDiv) placeholderDiv.style.display = 'flex';
+            };
+            if (!avatarImg.complete) {
+                avatarImg.addEventListener('load', function() {
+                    if(placeholderDiv) placeholderDiv.style.display = 'none';
+                    avatarImg.style.display = 'block';
+                });
+            } else if (avatarImg.naturalWidth === 0) {
+                avatarImg.onerror();
+            }
+        }
+    })();
+</script>
+</body>
+</html>
